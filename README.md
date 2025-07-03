@@ -1,319 +1,293 @@
-# 🔥 Cyber Ops Dotfiles
+# 🔥 Vertical Cyber Intelligence Terminal System
 
-**Elite Hyprland setup for Kali Linux - Cybersecurity development environment**
+**Elite Hyprland + AI-Augmented Development Environment for Kali Linux**
 
 <div align="center">
 
 ![Kali Linux](https://img.shields.io/badge/Kali_Linux-557C94?style=for-the-badge&logo=kali-linux&logoColor=white)
 ![Hyprland](https://img.shields.io/badge/Hyprland-00D4FF?style=for-the-badge&logo=wayland&logoColor=white)
 ![Neovim](https://img.shields.io/badge/NeoVim-57A143?style=for-the-badge&logo=neovim&logoColor=white)
-![Terminal](https://img.shields.io/badge/Alacritty-F46800?style=for-the-badge&logo=alacritty&logoColor=white)
+![Security](https://img.shields.io/badge/Security-Hardened-FF4F00?style=for-the-badge&logo=security&logoColor=white)
+![GitOps](https://img.shields.io/badge/GitOps-Enabled-00D4FF?style=for-the-badge&logo=gitpod&logoColor=white)
+![AI](https://img.shields.io/badge/AI-Augmented-FF6B00?style=for-the-badge&logo=artificial-intelligence&logoColor=white)
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/N2Studios/KaliDotfiles/graphs/commit-activity)
+[![Security](https://img.shields.io/badge/Security-Audit%20Complete-success.svg)](https://github.com/N2Studios/KaliDotfiles/blob/main/CHANGELOG.md)
 
 </div>
 
-## 🎯 Overview
+---
 
-This repository contains a complete dotfiles setup designed for **cybersecurity professionals** and **elite developers** running **Kali Linux** with **Hyprland** as the window manager. The configuration creates a blazing-fast, keyboard-driven environment optimized for penetration testing, development, and operational security tasks.
+## 🎯 Mission Objective
 
-### 🎨 Theme
-- **Background**: Jet black (`#0A0A0A`)
-- **Accent**: Electric orange (`#FF4F00`)
-- **Opacity**: 85% for terminals and windows
-- **Features**: Rounded corners, blur effects, neon-style borders
+**Vertical** is a production-hardened, AI-augmented terminal system designed for **elite cybersecurity professionals** and **advanced developers** who demand maximum performance, security, and operational efficiency. Built on **Kali Linux** with **Hyprland** as the foundation, this system provides a keyboard-first, blazing-fast environment optimized for:
+
+- **Penetration Testing** & Red Team Operations
+- **AI-Assisted Development** with Sierra CLI integration
+- **Operational Security** (OpSec) workflows
+- **Advanced System Administration**
+- **Threat Intelligence** gathering and analysis
+
+**Security Level**: 🔐 **Production-Hardened** (2025 GitOps Standards)
 
 ---
 
-## ✨ Features
+## 🧱 Core Technology Stack
 
-### 🪟 Window Management (Hyprland)
-- **Wayland-native** tiling window manager
-- **Smooth animations** with custom bezier curves
-- **Blur effects** and transparency
-- **Rounded corners** with orange accent borders
-- **10 workspaces** with app-specific auto-assignment
-- **Gesture support** for laptop users
+### 🪟 **Compositor & Window Management**
+- **Hyprland** - Wayland-native tiling with GPU acceleration
+- **Waybar** - Intelligent HUD with system monitoring
+- **sxhkd** - Global hotkey daemon for rapid operations
 
-### 🗂️ Status Bar (Waybar)
-- **Transparent HUD** with orange accents
-- **System monitoring** (CPU, memory, temperature)
-- **Network status** and battery indicator
-- **Custom Sierra AI operations module**
-- **Weather integration**
-- **Click-to-launch** functionality
+### 💻 **Terminal & Development**
+- **Alacritty** - GPU-accelerated terminal emulator
+- **Tmux** - Advanced session management with custom layouts
+- **Neovim** - Hyperextensible editor with LSP + Mason + Lazy
+- **ToggleTerm** - Integrated terminal management within Neovim
 
-### 💻 Terminal (Alacritty)
-- **85% opacity** with blur effects
-- **JetBrainsMono Nerd Font** for perfect glyphs
-- **Orange cursor** and selection highlights
-- **Optimized colors** for readability
-- **Vim-like keybindings**
+### 🔐 **Security & Monitoring**
+- **Watchdog System** - Real-time filesystem monitoring
+- **Git Pre-commit Hooks** - Automated security validation
+- **Audit Logging** - Comprehensive change tracking
+- **Backup Strategy** - Automated configuration versioning
 
-### 🛠️ Development Environment
+### 🤖 **AI Integration**
+- **Sierra CLI** - AI assistant for development and operations
+- **Intelligent Autocomplete** - Context-aware suggestions
+- **Code Analysis** - AI-powered security scanning
 
-#### 📝 Editor (Neovim)
-- **LSP support** for 12+ languages
-- **Telescope** fuzzy finder
-- **Treesitter** syntax highlighting
-- **Auto-completion** with nvim-cmp
-- **Git integration** with gitsigns
-- **File explorer** with nvim-tree
-- **Custom cyber ops theme**
-
-#### 🔧 Terminal Multiplexer (Tmux)
-- **Orange & black theme** matching overall aesthetic
-- **Vim-like navigation** (hjkl keys)
-- **Session management** with fuzzy switching
-- **Plugin ecosystem** with TPM
-- **Custom layouts** for dev and ops workflows
-
-#### 🚀 App Launcher (Rofi)
-- **Transparent design** with orange highlights
-- **Fuzzy searching** with icons
-- **Custom cyber ops theme**
-- **SSH and window switching** modes
-
-### 🎯 Cyber Ops Integration
-- **Pre-configured tools**: Burp Suite, Wireshark, Nmap, Metasploit
-- **Sierra AI CLI** integration (Ctrl+Alt+T)
-- **Custom hotkeys** for penetration testing workflows
-- **Docker support** for isolated environments
-- **Python security libraries** pre-installed
+### 🎨 **Theming & Aesthetics**
+- **Cyber Ops Theme** - Professional orange/black color scheme
+- **Nerd Font Integration** - Perfect glyph rendering
+- **Opacity & Blur** - Modern transparency effects
+- **Modular Colors** - Centralized theme management
 
 ---
 
-## 🚀 Installation
+## 🛠️ Installation
 
-### Prerequisites
-- **Kali Linux** (tested on 2024.x)
-- **Git** installed
-- **Internet connection** for package downloads
+### 📋 Prerequisites
+- **Kali Linux** 2024.x (minimal or full installation)
+- **GPU with Wayland support** (Intel/AMD/NVIDIA)
+- **4GB+ RAM** recommended
 - **Regular user account** (not root)
+- **Internet connection** for package downloads
 
-### Quick Install
+### 🚀 Quick Installation
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/Kali_Dotfiles.git
-cd Kali_Dotfiles
+git clone https://github.com/N2Studios/KaliDotfiles.git
+cd KaliDotfiles
 
-# Make installer executable
-chmod +x install.sh
-
-# Run the installation script
-./install.sh
+# Make installer executable and run
+chmod +x install.sh && ./install.sh
 ```
 
-### What the installer does:
-1. **Updates system** and installs required packages
-2. **Installs Hyprland** and Wayland components
-3. **Downloads Nerd Fonts** (JetBrainsMono, Iosevka, FiraCode)
-4. **Installs development tools** (Node.js, Python, Rust, Go)
-5. **Sets up Oh My Zsh** with plugins and themes
-6. **Creates symlinks** for all configuration files
-7. **Configures services** and environment variables
-8. **Installs cybersecurity tools** and frameworks
+### 🔄 Post-Installation Steps
 
-### Post-Installation
-1. **Logout and login** to apply shell changes
-2. **Start Hyprland** from display manager
-3. **Install Tmux plugins**: `tmux` → `Ctrl+a, I`
-4. **Install Neovim plugins**: `nvim` → `:Lazy sync`
+1. **System Reboot** - Apply all system changes
+2. **Login to Hyprland** - Select from display manager
+3. **Initialize Tmux Plugins** - `tmux` → `Ctrl+a, I`
+4. **Setup Neovim** - `nvim` → `:Lazy sync` → `:Mason`
+5. **Verify Installation** - Run `./scripts/system-info`
 
 ---
 
-## ⌨️ Hotkeys
+## ⌨️ Keybindings Cheat Sheet
 
-### Window Management
-| Key | Action |
-|-----|--------|
-| `Super + Enter` | Open Alacritty terminal |
+### 🪟 **Hyprland (Window Management)**
+| Keybind | Action |
+|---------|--------|
+| `Super + Enter` | Launch Alacritty terminal |
 | `Super + Space` | App launcher (Rofi) |
-| `Super + D` | File manager (Thunar) |
-| `Super + Q` | Close window |
-| `Super + F` | Toggle floating |
+| `Super + Q` | Close active window |
+| `Super + F` | Toggle floating mode |
 | `Super + M` | Toggle fullscreen |
 | `Super + 1-9` | Switch to workspace |
 | `Super + Shift + 1-9` | Move window to workspace |
+| `Super + H/J/K/L` | Navigate windows (vim-style) |
+| `Super + Shift + H/J/K/L` | Move windows |
 
-### System Controls
-| Key | Action |
-|-----|--------|
+### 🖥️ **Tmux (Session Management)**
+| Keybind | Action |
+|---------|--------|
+| `Ctrl + A` | Prefix key |
+| `Prefix + C` | Create new window |
+| `Prefix + \|` | Split vertically |
+| `Prefix + -` | Split horizontally |
+| `Prefix + H/J/K/L` | Navigate panes |
+| `Prefix + R` | Reload configuration |
+| `Prefix + I` | Install plugins |
+
+### 📝 **Neovim (Editor)**
+| Keybind | Action |
+|---------|--------|
+| `<Leader>ff` | Find files (Telescope) |
+| `<Leader>fg` | Live grep |
+| `<Leader>fb` | Browse buffers |
+| `<Leader>e` | Toggle file explorer |
+| `<Leader>gs` | Git status |
+| `<Leader>ca` | Code actions |
+| `<Leader>rn` | Rename symbol |
+| `gd` | Go to definition |
+
+### 🔧 **System & Operations**
+| Keybind | Action |
+|---------|--------|
+| `Ctrl + Alt + T` | Sierra AI Terminal |
+| `Super + Ctrl + B` | System monitor (btop) |
 | `Super + P` | Screenshot (area) |
 | `Super + Shift + P` | Screenshot (full) |
 | `Super + B` | Toggle Waybar |
-| `Super + H/J/K/L` | Navigate windows (vim-like) |
-| `Super + Shift + H/J/K/L` | Move windows |
-
-### Development Shortcuts
-| Key | Action |
-|-----|--------|
-| `Super + N` | Neovim in terminal |
 | `Super + R` | Ranger file manager |
-| `Super + G` | Lazygit |
-| `Super + Z` | System monitor (btop) |
-| `Super + W` | Firefox |
-| `Super + E` | VSCode |
-
-### Cyber Ops Specific
-| Key | Action |
-|-----|--------|
-| `Ctrl + Alt + T` | Sierra AI CLI |
-| `Super + Ctrl + B` | Burp Suite |
-| `Super + Ctrl + W` | Wireshark |
 
 ---
 
-## 📁 Structure
+## 🔐 Security & Maintenance
+
+### 🛡️ **Security Features**
+- **Pre-commit Hooks** - Prevent accidental commit of sensitive files
+- **Watchdog Monitoring** - Real-time filesystem change detection
+- **Audit Logging** - Complete change tracking and accountability
+- **Configuration Validation** - Automated security checks
+- **Backup Strategy** - Automated rollback capabilities
+
+### 🔧 **Maintenance Tools**
+```bash
+# Run system health check
+./scripts/system-info
+
+# Clean up dotfiles and temporary files
+./scripts/cleanup-dotfiles
+
+# Launch AI-assisted project management
+./scripts/project-launcher
+
+# Monitor filesystem for unauthorized changes
+./scripts/watchdog.sh --daemon
+```
+
+### 📊 **Health Checks**
+- **Neovim**: `:checkhealth` - Validate LSP and plugin status
+- **System**: `./scripts/system-info` - Comprehensive system overview
+- **Tmux**: `tmux list-sessions` - Session management status
+- **Hyprland**: `hyprctl monitors` - Display configuration
+
+---
+
+## 🗂️ Directory Structure
 
 ```
-Kali_Dotfiles/
-├── .config/
-│   ├── hypr/           # Hyprland configuration
-│   │   └── hyprland.conf
-│   ├── waybar/         # Status bar
-│   │   ├── config
-│   │   └── style.css
-│   ├── alacritty/      # Terminal emulator
+KaliDotfiles/
+├── 📁 .config/                    # Application configurations
+│   ├── 📂 alacritty/              # Terminal emulator config
 │   │   └── alacritty.toml
-│   ├── nvim/           # Neovim configuration
+│   ├── 📂 btop/                   # System monitor
+│   │   ├── btop.conf
+│   │   └── themes/cyber-ops.theme
+│   ├── 📂 colors/                 # Centralized color schemes
+│   │   └── cyber-ops-theme.conf
+│   ├── 📂 hypr/                   # Hyprland compositor
+│   │   └── hyprland.conf
+│   ├── 📂 nvim/                   # Neovim editor
 │   │   ├── init.lua
-│   │   └── lua/plugins/
-│   ├── rofi/           # App launcher
+│   │   └── lua/plugins/lsp.lua
+│   ├── 📂 rofi/                   # Application launcher
 │   │   ├── config.rasi
 │   │   └── cyber-ops.rasi
-│   ├── sxhkd/          # Global hotkeys
+│   ├── 📂 sxhkd/                  # Global hotkeys
 │   │   └── sxhkdrc
-│   ├── btop/           # System monitor
-│   │   ├── btop.conf
-│   │   └── themes/
-│   └── colors/         # Theme colors
-│       └── cyber-ops-theme.conf
-├── scripts/            # Custom utilities
-│   ├── cleanup-dotfiles
-│   ├── project-launcher
-│   └── system-info
-├── .tmux.conf          # Tmux configuration
-├── install.sh          # Installation script
-└── README.md          # This file
+│   └── 📂 waybar/                 # Status bar
+│       ├── config
+│       └── style.css
+├── 📁 scripts/                    # System utilities
+│   ├── 🔧 cleanup-dotfiles        # Automated maintenance
+│   ├── 🚀 project-launcher        # AI-assisted project management
+│   ├── 📊 system-info            # System health diagnostics
+│   └── 👁️ watchdog.sh             # Security monitoring
+├── 📁 .git/hooks/                 # Git security hooks
+│   └── pre-commit                 # Security validation
+├── 📄 .tmux.conf                  # Tmux configuration
+├── 📄 install.sh                  # Installation script
+├── 📄 CHANGELOG.md               # Change documentation
+└── 📄 README.md                  # This file
 ```
 
 ---
 
-## 🛠️ Customization
+## 📊 Changelog
 
-### Colors
-The color scheme is defined in each configuration file:
-- **Background**: `#0A0A0A` (jet black)
-- **Accent**: `#FF4F00` (electric orange)
-- **Secondary**: `#FF6B00` (orange variant)
-- **Text**: `#FFFFFF` (white)
-- **Dimmed**: `#CCCCCC` (light gray)
+For detailed information about recent changes, security audits, and system improvements, see our comprehensive [CHANGELOG.md](CHANGELOG.md).
 
-### Fonts
-Primary font stack:
-1. **JetBrainsMono Nerd Font** (main)
-2. **Iosevka Nerd Font** (alternative)
-3. **FiraCode Nerd Font** (coding)
-
-### Opacity Settings
-- **Alacritty**: 85%
-- **Waybar**: 90%
-- **Rofi**: 95%
-- **Inactive windows**: 85%
+### 🔥 **Recent Major Updates (2025-01-22)**
+- ✅ **GitOps Hardening Complete** - Full security audit and hardening
+- ✅ **Pre-commit Hooks** - Automated security validation
+- ✅ **Watchdog System** - Real-time filesystem monitoring
+- ✅ **Backup Strategy** - Configuration versioning with `backup/legacy-v1`
+- ✅ **Documentation Overhaul** - Complete system documentation
+- ✅ **Performance Optimization** - Streamlined configurations
+- ✅ **Security Consolidation** - Removed redundant and vulnerable configs
 
 ---
 
-## 🔧 Development Tools
+## 🧪 System Validation
 
-### Languages & Runtimes
-- **Python 3.x** with security libraries
-- **Node.js** with modern tooling
-- **Rust** with cargo
-- **Go** latest stable
-- **C/C++** with GCC/Clang
-
-### Security Tools
-- **Burp Suite Community**
-- **Wireshark** with GUI
-- **Nmap** with scripts
-- **Metasploit Framework**
-- **Aircrack-ng** suite
-- **Hashcat** password cracking
-- **John the Ripper**
-- **Hydra** brute force
-- **Gobuster** directory enumeration
-- **SQLMap** SQL injection
-
-### Development Utilities
-- **Docker** & Docker Compose
-- **Git** with GitHub CLI
-- **Tmux** session management
-- **Fzf** fuzzy finder
-- **Ripgrep** fast search
-- **Bat** enhanced cat
-- **Exa** modern ls
-- **Zoxide** smart cd
-
----
-
-## 🔍 Troubleshooting
-
-### Common Issues
-
-#### Hyprland won't start
+### 🔍 **Health Check Commands**
 ```bash
-# Check if Hyprland is installed
-hyprland --version
+# Comprehensive system information
+./scripts/system-info
 
-# Check logs
-journalctl -u hyprland
+# Check Neovim health
+nvim +checkhealth
 
-# Verify Wayland support
-echo $XDG_SESSION_TYPE
+# Validate Hyprland configuration
+hyprctl reload
+
+# Test tmux setup
+tmux new-session -d -s test-session && tmux kill-session -t test-session
+
+# Verify watchdog functionality
+./scripts/watchdog.sh --status
 ```
 
-#### Fonts not displaying correctly
+### 🚨 **Troubleshooting**
+Common issues and solutions:
+
 ```bash
-# Refresh font cache
-fc-cache -fv
+# Hyprland won't start
+journalctl -u hyprland --since "10 minutes ago"
 
-# List available fonts
-fc-list | grep -i jetbrains
+# Fonts not rendering
+fc-cache -fv && fc-list | grep -i nerd
+
+# Waybar not displaying
+killall waybar && waybar &
+
+# Neovim LSP issues
+nvim +checkhealth +q
 ```
-
-#### Waybar not showing
-```bash
-# Check if waybar is running
-pgrep waybar
-
-# Start waybar manually
-waybar &
-
-# Check configuration
-waybar -c ~/.config/waybar/config -s ~/.config/waybar/style.css
-```
-
-### Performance Issues
-- **Reduce animations**: Edit `hyprland.conf` animation settings
-- **Disable blur**: Set `blur.enabled = false` in Hyprland config
-- **Lower opacity**: Adjust transparency settings
-- **Limit workspaces**: Use fewer virtual desktops
 
 ---
 
 ## 🤝 Contributing
 
-1. **Fork** the repository
-2. **Create** a feature branch
-3. **Make** your changes
-4. **Test** thoroughly on Kali Linux
-5. **Submit** a pull request
+We welcome contributions that maintain our security and quality standards:
 
-### Development Guidelines
-- Follow existing code style
-- Test on fresh Kali installation
-- Update documentation
-- Add screenshots for visual changes
+1. **Fork** the repository
+2. **Create** a feature branch: `git checkout -b feature/amazing-feature`
+3. **Test** thoroughly on fresh Kali installation
+4. **Commit** with conventional commits: `git commit -m "feat: add amazing feature"`
+5. **Push** to branch: `git push origin feature/amazing-feature`
+6. **Submit** a Pull Request
+
+### 📋 **Development Guidelines**
+- Follow existing code style and security practices
+- Test all changes on clean Kali Linux installation
+- Update documentation for user-facing changes
+- Include security considerations in PR description
+- All commits must pass pre-commit hooks
 
 ---
 
@@ -323,30 +297,36 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ---
 
-## 🙏 Credits
+## 🙏 Acknowledgments
 
-- **Hyprland** - Amazing Wayland compositor
-- **Waybar** - Highly customizable status bar
-- **Alacritty** - GPU-accelerated terminal
-- **Neovim** - Hyperextensible editor
-- **Tmux** - Terminal multiplexer
-- **Rofi** - Window switcher and app launcher
-- **Nerd Fonts** - Iconic font aggregator
+### 🏆 **Core Technologies**
+- **[Hyprland](https://hyprland.org/)** - Next-gen Wayland compositor
+- **[Neovim](https://neovim.io/)** - Hyperextensible text editor
+- **[Alacritty](https://alacritty.org/)** - GPU-accelerated terminal
+- **[Tmux](https://tmux.github.io/)** - Terminal multiplexer
+- **[Waybar](https://github.com/Alexays/Waybar)** - Customizable status bar
+
+### 🎨 **Design & Fonts**
+- **[Nerd Fonts](https://nerdfonts.com/)** - Icon-enhanced fonts
+- **[JetBrains Mono](https://jetbrains.com/mono/)** - Developer typography
 
 ---
 
-## 📞 Support
+## 📞 Support & Community
 
-- **Issues**: [GitHub Issues](https://github.com/yourusername/Kali_Dotfiles/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/yourusername/Kali_Dotfiles/discussions)
-- **Wiki**: [Project Wiki](https://github.com/yourusername/Kali_Dotfiles/wiki)
+- **🐛 Issues**: [GitHub Issues](https://github.com/N2Studios/KaliDotfiles/issues)
+- **💬 Discussions**: [GitHub Discussions](https://github.com/N2Studios/KaliDotfiles/discussions)
+- **📚 Documentation**: [Project Wiki](https://github.com/N2Studios/KaliDotfiles/wiki)
+- **🔐 Security**: [Security Policy](https://github.com/N2Studios/KaliDotfiles/security)
 
 ---
 
 <div align="center">
 
-**Made with ❤️ for the cybersecurity community**
+**🔥 Built for Elite Cyber Operations**
 
-*Elite tools for elite operators*
+*Where Security Meets Performance*
+
+**[⭐ Star this repo](https://github.com/N2Studios/KaliDotfiles) if it powers your operations!**
 
 </div>
