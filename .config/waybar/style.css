@@ -1,0 +1,558 @@
+/* ████████╗███████╗██████╗ ███╗   ███╗██╗███╗   ██╗ █████╗ ██╗      */
+/* ╚══██╔══╝██╔════╝██╔══██╗████╗ ████║██║████╗  ██║██╔══██╗██║      */
+/*    ██║   █████╗  ██████╔╝██╔████╔██║██║██╔██╗ ██║███████║██║      */
+/*    ██║   ██╔══╝  ██╔══██╗██║╚██╔╝██║██║██║╚██╗██║██╔══██║██║      */
+/*    ██║   ███████╗██║  ██║██║ ╚═╝ ██║██║██║ ╚████║██║  ██║███████╗ */
+/*    ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝ */
+
+/* WAYBAR STYLES - CYBER OPS EDITION */
+/* Target: Kali Linux + Hyprland | 2025 Black-Ops Aesthetic */
+/* Author: Generated for cyber ops + daily driver workflows */
+
+/* ===================================================================
+ * 🎨 GLOBAL VARIABLES & THEME
+ * ===================================================================*/
+* {
+    /* Cyber Ops Color Palette */
+    --bg-primary: rgba(10, 10, 10, 0.7);
+    --bg-secondary: rgba(20, 20, 20, 0.8);
+    --bg-hover: rgba(255, 79, 0, 0.1);
+    --bg-urgent: rgba(255, 79, 0, 0.3);
+    
+    /* Text Colors */
+    --text-primary: #FF4F00;
+    --text-secondary: #FF6600;
+    --text-dim: #CC3F00;
+    --text-bright: #FFAA00;
+    --text-white: #FFFFFF;
+    --text-muted: #999999;
+    
+    /* Border & Shadow */
+    --border-color: rgba(255, 79, 0, 0.2);
+    --border-hover: rgba(255, 79, 0, 0.5);
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    --shadow-glow: 0 0 10px rgba(255, 79, 0, 0.3);
+    
+    /* Sizing */
+    --bar-height: 28px;
+    --module-padding: 8px 12px;
+    --border-radius: 8px;
+    --font-size: 12px;
+    --font-weight: 500;
+    
+    /* Fonts */
+    font-family: "JetBrainsMono Nerd Font", "FiraCode Nerd Font", monospace;
+    font-size: var(--font-size);
+    font-weight: var(--font-weight);
+    min-height: 0;
+}
+
+/* ===================================================================
+ * 🎛️ MAIN WAYBAR WINDOW
+ * ===================================================================*/
+window#waybar {
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font", "FiraCode Nerd Font", monospace;
+    font-size: var(--font-size);
+    font-weight: var(--font-weight);
+    color: var(--text-primary);
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+window#waybar.empty {
+    background-color: transparent;
+}
+
+window#waybar.solo {
+    background-color: var(--bg-primary);
+}
+
+/* ===================================================================
+ * 🧩 MODULE BASE STYLING
+ * ===================================================================*/
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+
+.modules-right > widget:last-child > #tray {
+    margin-right: 0;
+}
+
+/* Module Container */
+.module {
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: var(--module-padding);
+    margin: 0 2px;
+    box-shadow: var(--shadow);
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.module:hover {
+    background-color: var(--bg-hover);
+    border-color: var(--border-hover);
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-1px);
+}
+
+/* ===================================================================
+ * 🏢 WORKSPACE STYLING
+ * ===================================================================*/
+#workspaces {
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 2px 6px;
+    margin: 0 4px;
+    box-shadow: var(--shadow);
+}
+
+#workspaces button {
+    background-color: transparent;
+    border: none;
+    border-radius: 6px;
+    padding: 4px 8px;
+    margin: 0 2px;
+    color: var(--text-dim);
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.2s ease;
+}
+
+#workspaces button:hover {
+    background-color: var(--bg-hover);
+    color: var(--text-secondary);
+    box-shadow: 0 0 5px rgba(255, 79, 0, 0.2);
+}
+
+#workspaces button.active {
+    background-color: var(--bg-urgent);
+    color: var(--text-primary);
+    box-shadow: var(--shadow-glow);
+    font-weight: bold;
+}
+
+#workspaces button.urgent {
+    background-color: rgba(255, 79, 0, 0.5);
+    color: var(--text-white);
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* ===================================================================
+ * 🪟 WINDOW TITLE
+ * ===================================================================*/
+#window {
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: var(--module-padding);
+    margin: 0 4px;
+    color: var(--text-secondary);
+    font-weight: bold;
+    font-style: italic;
+    box-shadow: var(--shadow);
+    transition: all 0.2s ease;
+}
+
+#window:hover {
+    background-color: var(--bg-hover);
+    border-color: var(--border-hover);
+    color: var(--text-primary);
+}
+
+#window.empty {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+/* ===================================================================
+ * 🕐 CLOCK STYLING
+ * ===================================================================*/
+#clock {
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: var(--module-padding);
+    margin: 0 4px;
+    color: var(--text-primary);
+    font-weight: bold;
+    font-size: 14px;
+    box-shadow: var(--shadow);
+    transition: all 0.2s ease;
+}
+
+#clock:hover {
+    background-color: var(--bg-hover);
+    border-color: var(--border-hover);
+    box-shadow: var(--shadow-glow);
+    color: var(--text-bright);
+}
+
+/* ===================================================================
+ * 💻 SYSTEM MONITORING MODULES
+ * ===================================================================*/
+#cpu, #memory, #temperature {
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: var(--module-padding);
+    margin: 0 2px;
+    color: var(--text-secondary);
+    font-weight: bold;
+    box-shadow: var(--shadow);
+    transition: all 0.2s ease;
+}
+
+#cpu:hover, #memory:hover, #temperature:hover {
+    background-color: var(--bg-hover);
+    border-color: var(--border-hover);
+    color: var(--text-primary);
+    box-shadow: var(--shadow-glow);
+}
+
+/* CPU specific styling */
+#cpu {
+    color: var(--text-primary);
+}
+
+#cpu.warning {
+    background-color: rgba(255, 165, 0, 0.1);
+    color: #FFA500;
+}
+
+#cpu.critical {
+    background-color: rgba(255, 0, 0, 0.1);
+    color: #FF0000;
+    animation: pulse 2s infinite;
+}
+
+/* Memory specific styling */
+#memory {
+    color: var(--text-secondary);
+}
+
+#memory.warning {
+    background-color: rgba(255, 165, 0, 0.1);
+    color: #FFA500;
+}
+
+#memory.critical {
+    background-color: rgba(255, 0, 0, 0.1);
+    color: #FF0000;
+    animation: pulse 2s infinite;
+}
+
+/* Temperature specific styling */
+#temperature {
+    color: var(--text-bright);
+}
+
+#temperature.critical {
+    background-color: rgba(255, 0, 0, 0.1);
+    color: #FF0000;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* ===================================================================
+ * 🌐 NETWORK MODULE
+ * ===================================================================*/
+#network {
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: var(--module-padding);
+    margin: 0 2px;
+    color: var(--text-secondary);
+    font-weight: bold;
+    box-shadow: var(--shadow);
+    transition: all 0.2s ease;
+}
+
+#network:hover {
+    background-color: var(--bg-hover);
+    border-color: var(--border-hover);
+    color: var(--text-primary);
+    box-shadow: var(--shadow-glow);
+}
+
+#network.ethernet {
+    color: var(--text-primary);
+}
+
+#network.wifi {
+    color: var(--text-secondary);
+}
+
+#network.disconnected {
+    background-color: rgba(255, 0, 0, 0.1);
+    color: #FF0000;
+}
+
+/* ===================================================================
+ * 🔋 BATTERY MODULE
+ * ===================================================================*/
+#battery {
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: var(--module-padding);
+    margin: 0 2px;
+    color: var(--text-secondary);
+    font-weight: bold;
+    box-shadow: var(--shadow);
+    transition: all 0.2s ease;
+}
+
+#battery:hover {
+    background-color: var(--bg-hover);
+    border-color: var(--border-hover);
+    color: var(--text-primary);
+    box-shadow: var(--shadow-glow);
+}
+
+#battery.charging, #battery.plugged {
+    color: var(--text-bright);
+    background-color: rgba(255, 170, 0, 0.1);
+}
+
+#battery.warning:not(.charging) {
+    background-color: rgba(255, 165, 0, 0.1);
+    color: #FFA500;
+}
+
+#battery.critical:not(.charging) {
+    background-color: rgba(255, 0, 0, 0.1);
+    color: #FF0000;
+    animation: pulse 2s infinite;
+}
+
+/* ===================================================================
+ * 🔊 AUDIO MODULE
+ * ===================================================================*/
+#pulseaudio {
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: var(--module-padding);
+    margin: 0 2px;
+    color: var(--text-secondary);
+    font-weight: bold;
+    box-shadow: var(--shadow);
+    transition: all 0.2s ease;
+}
+
+#pulseaudio:hover {
+    background-color: var(--bg-hover);
+    border-color: var(--border-hover);
+    color: var(--text-primary);
+    box-shadow: var(--shadow-glow);
+}
+
+#pulseaudio.muted {
+    background-color: rgba(255, 0, 0, 0.1);
+    color: #FF0000;
+}
+
+#pulseaudio.bluetooth {
+    color: var(--text-bright);
+}
+
+/* ===================================================================
+ * 🎯 CUSTOM SIERRA OPS MODULE
+ * ===================================================================*/
+#custom-sierra-ops {
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: var(--module-padding);
+    margin: 0 2px;
+    color: var(--text-primary);
+    font-weight: bold;
+    font-size: 13px;
+    box-shadow: var(--shadow);
+    transition: all 0.2s ease;
+}
+
+#custom-sierra-ops:hover {
+    background-color: var(--bg-hover);
+    border-color: var(--border-hover);
+    color: var(--text-bright);
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-1px);
+}
+
+#custom-sierra-ops.sierra-active {
+    background-color: var(--bg-urgent);
+    color: var(--text-white);
+    animation: glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from { box-shadow: 0 0 5px rgba(255, 79, 0, 0.3); }
+    to { box-shadow: 0 0 15px rgba(255, 79, 0, 0.8); }
+}
+
+/* ===================================================================
+ * 📋 SYSTEM TRAY
+ * ===================================================================*/
+#tray {
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 4px 8px;
+    margin: 0 2px;
+    box-shadow: var(--shadow);
+    transition: all 0.2s ease;
+}
+
+#tray:hover {
+    background-color: var(--bg-hover);
+    border-color: var(--border-hover);
+    box-shadow: var(--shadow-glow);
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: var(--bg-urgent);
+}
+
+#tray > .active {
+    -gtk-icon-effect: highlight;
+}
+
+/* ===================================================================
+ * 🎨 TOOLTIP STYLING
+ * ===================================================================*/
+tooltip {
+    background-color: rgba(10, 10, 10, 0.9);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    color: var(--text-primary);
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size: 11px;
+    padding: 8px 12px;
+    box-shadow: var(--shadow);
+}
+
+tooltip label {
+    color: var(--text-primary);
+}
+
+/* ===================================================================
+ * 🎭 SPECIAL EFFECTS & ANIMATIONS
+ * ===================================================================*/
+@keyframes slideIn {
+    from { transform: translateY(-10px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+window#waybar {
+    animation: slideIn 0.3s ease-out;
+}
+
+/* ===================================================================
+ * 📱 RESPONSIVE DESIGN
+ * ===================================================================*/
+@media screen and (max-width: 1366px) {
+    * {
+        --font-size: 11px;
+        --module-padding: 6px 10px;
+    }
+    
+    #workspaces button {
+        padding: 3px 6px;
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    * {
+        --font-size: 10px;
+        --module-padding: 4px 8px;
+    }
+    
+    #workspaces button {
+        padding: 2px 4px;
+        font-size: 11px;
+    }
+}
+
+/* ===================================================================
+ * 🌙 DARK MODE ENHANCEMENTS
+ * ===================================================================*/
+@media (prefers-color-scheme: dark) {
+    * {
+        --bg-primary: rgba(5, 5, 5, 0.8);
+        --bg-secondary: rgba(15, 15, 15, 0.9);
+        --shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+    }
+}
+
+/* ===================================================================
+ * ⚡ PERFORMANCE OPTIMIZATIONS
+ * ===================================================================*/
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+.module {
+    will-change: transform, box-shadow;
+}
+
+/* ===================================================================
+ * 🎯 FOCUS & ACCESSIBILITY
+ * ===================================================================*/
+.module:focus {
+    outline: 2px solid var(--text-primary);
+    outline-offset: 2px;
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    * {
+        --bg-primary: rgba(0, 0, 0, 0.9);
+        --text-primary: #FFFFFF;
+        --border-color: rgba(255, 255, 255, 0.3);
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ===================================================================
+ * EOF - Cyber Ops Styling Complete
+ * ===================================================================*/ 

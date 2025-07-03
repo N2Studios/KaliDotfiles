@@ -1,0 +1,163 @@
+/* ╭─────────────────────────────────────────────────────────────────────────────────╮
+   │ ROFI THEME - CYBER OPS                                                         │
+   │ Elite app launcher theme for cybersecurity development                         │
+   │ Theme: Jet black (#0A0A0A) with electric orange (#FF4F00) accents             │
+   ╰─────────────────────────────────────────────────────────────────────────────────╯ */
+
+* {
+    bg-col:  #0A0A0A;
+    bg-col-light: #1A1A1A;
+    border-col: #333333;
+    selected-col: #FF4F00;
+    orange: #FF4F00;
+    orange-light: #FF6B00;
+    fg-col: #FFFFFF;
+    fg-col2: #CCCCCC;
+    fg-col3: #888888;
+    grey: #444444;
+    
+    width: 600;
+    font: "JetBrainsMono Nerd Font 11";
+}
+
+element-text, element-icon , mode-switcher {
+    background-color: inherit;
+    text-color: inherit;
+}
+
+window {
+    height: 360px;
+    border: 3px solid;
+    border-color: @orange;
+    border-radius: 12px;
+    background-color: @bg-col;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
+}
+
+mainbox {
+    background-color: @bg-col;
+    border-radius: 12px;
+}
+
+inputbar {
+    children: [prompt, entry];
+    background-color: @bg-col-light;
+    border-radius: 8px;
+    padding: 8px;
+    margin: 8px;
+    border: 1px solid;
+    border-color: @orange;
+    box-shadow: 0 0 20px rgba(255, 79, 0, 0.3);
+}
+
+prompt {
+    background-color: @orange;
+    padding: 6px;
+    text-color: @bg-col;
+    border-radius: 6px;
+    margin: 0px 4px 0px 0px;
+    font-weight: bold;
+}
+
+textbox-prompt-colon {
+    expand: false;
+    str: ":";
+}
+
+entry {
+    padding: 6px;
+    margin: 0px 0px 0px 4px;
+    text-color: @fg-col;
+    background-color: transparent;
+    placeholder: "Search applications...";
+    placeholder-color: @fg-col3;
+}
+
+listview {
+    border: 0px 0px 0px 0px;
+    padding: 6px 0px 0px 0px;
+    margin: 8px 8px 8px 8px;
+    columns: 1;
+    lines: 10;
+    background-color: @bg-col;
+    scrollbar: false;
+    cycle: true;
+    dynamic: true;
+    layout: vertical;
+}
+
+element {
+    padding: 8px;
+    margin: 2px 0px 2px 0px;
+    border-radius: 8px;
+    background-color: @bg-col;
+    text-color: @fg-col2;
+    transition: all 0.3s ease;
+}
+
+element-icon {
+    size: 24px;
+    margin: 0px 8px 0px 0px;
+}
+
+element selected {
+    background-color: @selected-col;
+    text-color: @bg-col;
+    border: 1px solid;
+    border-color: @orange-light;
+    box-shadow: 0 0 15px rgba(255, 79, 0, 0.5);
+    font-weight: bold;
+}
+
+element selected element-icon {
+    color: @bg-col;
+}
+
+element-text {
+    text-color: inherit;
+    font-weight: inherit;
+}
+
+mode-switcher {
+    spacing: 0;
+    margin: 8px;
+    background-color: @bg-col-light;
+    border-radius: 8px;
+    border: 1px solid;
+    border-color: @border-col;
+}
+
+button {
+    padding: 8px;
+    background-color: @bg-col-light;
+    text-color: @fg-col3;
+    vertical-align: 0.5;
+    horizontal-align: 0.5;
+    border-radius: 8px;
+    margin: 2px;
+    transition: all 0.3s ease;
+}
+
+button selected {
+    background-color: @orange;
+    text-color: @bg-col;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(255, 79, 0, 0.4);
+}
+
+message {
+    background-color: @bg-col-light;
+    margin: 8px;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid;
+    border-color: @orange;
+}
+
+textbox {
+    padding: 8px;
+    margin: 8px 0px 0px 0px;
+    text-color: @fg-col;
+    background-color: @bg-col-light;
+    border-radius: 8px;
+} 

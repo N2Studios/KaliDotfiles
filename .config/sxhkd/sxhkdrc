@@ -1,0 +1,212 @@
+#
+# sxhkd configuration for Kali Linux + Hyprland
+# Keyboard-first system control with zero mouse dependency
+# Author: Cyber Terminal Setup 2025
+#
+
+##########################
+# 🔧 APPLICATION LAUNCHERS
+##########################
+
+# Launch terminal
+super + Return
+    alacritty
+
+# Application launcher
+super + space
+    rofi -show drun
+
+# Screenshot tool
+super + shift + s
+    flameshot gui
+
+# Lock screen
+super + shift + l
+    loginctl lock-session
+
+# Development terminal with tmux
+super + t
+    alacritty -e tmux new-session -A -s dev
+
+# Launch Sierra AI CLI
+super + shift + a
+    alacritty -e sierra
+
+# Launch LazyGit
+super + shift + g
+    alacritty -e lazygit
+
+# File manager
+super + f
+    thunar
+
+##########################
+# 🧭 WINDOW NAVIGATION
+##########################
+
+# Focus windows (vim-like navigation)
+super + h
+    hyprctl dispatch movefocus l
+
+super + j
+    hyprctl dispatch movefocus d
+
+super + k
+    hyprctl dispatch movefocus u
+
+super + l
+    hyprctl dispatch movefocus r
+
+# Swap windows
+super + shift + h
+    hyprctl dispatch swapwindow l
+
+super + shift + l
+    hyprctl dispatch swapwindow r
+
+# Close active window
+super + q
+    hyprctl dispatch killactive
+
+##########################
+# 📺 LAYOUT + WORKSPACES
+##########################
+
+# Switch to workspace
+super + 1
+    hyprctl dispatch workspace 1
+
+super + 2
+    hyprctl dispatch workspace 2
+
+super + 3
+    hyprctl dispatch workspace 3
+
+super + 4
+    hyprctl dispatch workspace 4
+
+super + 5
+    hyprctl dispatch workspace 5
+
+# Move window to workspace
+super + shift + 1
+    hyprctl dispatch movetoworkspace 1
+
+super + shift + 2
+    hyprctl dispatch movetoworkspace 2
+
+super + shift + 3
+    hyprctl dispatch movetoworkspace 3
+
+super + shift + 4
+    hyprctl dispatch movetoworkspace 4
+
+super + shift + 5
+    hyprctl dispatch movetoworkspace 5
+
+# Toggle fullscreen
+super + shift + f
+    hyprctl dispatch fullscreen
+
+# Toggle floating
+super + shift + space
+    hyprctl dispatch togglefloating
+
+##########################
+# 🧠 VERTICAL OPS SHORTCUTS
+##########################
+
+# Launch Sierra visual interface
+super + shift + v
+    alacritty -e sh -c 'sierra --visual'
+
+# Run live capture tool
+super + shift + c
+    alacritty -e sh -c 'sierra --capture'
+
+# Run OSINT recon module
+super + shift + o
+    alacritty -e sh -c 'sierra --osint'
+
+##########################
+# 🔊 MEDIA + SYSTEM CONTROLS
+##########################
+
+# Volume controls
+XF86AudioRaiseVolume
+    pamixer -i 5
+
+XF86AudioLowerVolume
+    pamixer -d 5
+
+XF86AudioMute
+    pamixer -t
+
+# Brightness controls
+XF86MonBrightnessUp
+    brightnessctl set +10%
+
+XF86MonBrightnessDown
+    brightnessctl set 10%-
+
+# Media playback controls
+XF86AudioPlay
+    playerctl play-pause
+
+XF86AudioNext
+    playerctl next
+
+XF86AudioPrev
+    playerctl previous
+
+##########################
+# 🚀 QUICK SYSTEM ACTIONS
+##########################
+
+# Restart sxhkd
+super + Escape
+    pkill -USR1 -x sxhkd
+
+# System power menu
+super + shift + p
+    rofi -show power-menu
+
+# Network manager
+super + shift + n
+    alacritty -e nmtui
+
+# System monitor
+super + shift + m
+    alacritty -e htop
+
+# Quick note taking
+super + shift + x
+    alacritty -e nvim ~/notes/quick-$(date +%Y%m%d-%H%M%S).md
+
+##########################
+# 🌐 BROWSER + PRODUCTIVITY
+##########################
+
+# Default browser
+super + b
+    firefox
+
+# Private browser window
+super + shift + b
+    firefox --private-window
+
+# Calculator
+super + c
+    gnome-calculator
+
+##########################
+# 🎯 CUSTOM PRODUCTIVITY
+##########################
+
+# Toggle compositor (for gaming/performance)
+super + shift + r
+    hyprctl dispatch exec "killall hyprpaper || hyprpaper"
+
+# Emergency terminal (independent of compositor)
+super + alt + t
+    alacritty --class="emergency-terminal" 

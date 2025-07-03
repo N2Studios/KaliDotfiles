@@ -1,0 +1,200 @@
+#!/bin/bash
+
+# ╭─────────────────────────────────────────────────────────────────────────────────╮
+# │ SYSTEM INFO - CYBER OPS DASHBOARD                                              │
+# │ Comprehensive system information display                                       │
+# │ Elite monitoring for cybersecurity operations                                  │
+# │ Optimized for security and performance                                         │
+# ╰─────────────────────────────────────────────────────────────────────────────────╯
+
+# Security: Restrict PATH and set secure defaults
+export PATH="/usr/local/bin:/usr/bin:/bin"
+umask 022
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+PURPLE='\033[0;35m'
+CYAN='\033[0;36m'
+ORANGE='\033[0;33m'
+NC='\033[0m' # No Color
+
+# Functions to get system information
+get_os_info() {
+    if [[ -f /etc/os-release ]]; then
+        . /etc/os-release
+        echo "$PRETTY_NAME"
+    else
+        echo "Unknown"
+    fi
+}
+
+get_kernel_info() {
+    uname -r
+}
+
+get_uptime() {
+    uptime -p | sed 's/up //'
+}
+
+get_cpu_info() {
+    grep "model name" /proc/cpuinfo | head -1 | cut -d':' -f2 | sed 's/^ *//'
+}
+
+get_cpu_usage() {
+    top -bn1 | grep "Cpu(s)" | awk '{print $2}' | cut -d'%' -f1
+}
+
+get_memory_info() {
+    local total_mem=$(free -h | awk '/^Mem:/ {print $2}')
+    local used_mem=$(free -h | awk '/^Mem:/ {print $3}')
+    local available_mem=$(free -h | awk '/^Mem:/ {print $7}')
+    echo "Used: $used_mem / Total: $total_mem (Available: $available_mem)"
+}
+
+get_disk_info() {
+    df -h / | awk 'NR==2 {printf "Used: %s / Total: %s (%s full)", $3, $2, $5}'
+}
+
+get_network_info() {
+    local interface=$(ip route | grep default | awk '{print $5}' | head -1)
+    if [[ -n "$interface" ]]; then
+        local ip=$(ip addr show "$interface" | grep 'inet ' | awk '{print $2}' | cut -d'/' -f1)
+        echo "$interface: $ip"
+    else
+        echo "No active interface"
+    fi
+}
+
+get_load_average() {
+    uptime | awk -F'load average:' '{print $2}' | sed 's/^ *//'
+}
+
+get_temperature() {
+    if command -v sensors &> /dev/null; then
+        sensors | grep -E "Core|temp" | head -1 | awk '{print $3}' | tr -d '+'
+    else
+        echo "N/A"
+    fi
+}
+
+get_battery_info() {
+    if [[ -d /sys/class/power_supply/BAT* ]]; then
+        local battery_path=$(ls /sys/class/power_supply/BAT* | head -1)
+        local capacity=$(cat "$battery_path/capacity" 2>/dev/null)
+        local status=$(cat "$battery_path/status" 2>/dev/null)
+        echo "$capacity% ($status)"
+    else
+        echo "No battery"
+    fi
+}
+
+get_processes() {
+    ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head -6
+}
+
+get_listening_ports() {
+    netstat -tuln | grep LISTEN | wc -l
+}
+
+get_active_connections() {
+    netstat -tun | grep ESTABLISHED | wc -l
+}
+
+# Function to display a section header
+section_header() {
+    echo -e "\n${ORANGE}╭─────────────────────────────────────────────────────────────────────────────────╮${NC}"
+    echo -e "${ORANGE}│${NC} $1"
+    echo -e "${ORANGE}╰─────────────────────────────────────────────────────────────────────────────────╯${NC}"
+}
+
+# Function to display a key-value pair
+display_info() {
+    local key="$1"
+    local value="$2"
+    local color="${3:-$CYAN}"
+    printf "${color}%-20s${NC} %s\n" "$key:" "$value"
+}
+
+# Main display function
+main() {
+    clear
+    
+    # Header
+    echo -e "${ORANGE}"
+    cat << 'EOF'
+╭─────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                 │
+│   ██████╗██╗   ██╗██████╗ ███████╗██████╗      ██████╗ ██████╗ ███████╗       │
+│  ██╔════╝╚██╗ ██╔╝██╔══██╗██╔════╝██╔══██╗    ██╔═══██╗██╔══██╗██╔════╝       │
+│  ██║      ╚████╔╝ ██████╔╝█████╗  ██████╔╝    ██║   ██║██████╔╝███████╗       │
+│  ██║       ╚██╔╝  ██╔══██╗██╔══╝  ██╔══██╗    ██║   ██║██╔═══╝ ╚════██║       │
+│  ╚██████╗   ██║   ██████╔╝███████╗██║  ██║    ╚██████╔╝██║     ███████║       │
+│   ╚═════╝   ╚═╝   ╚═════╝ ╚══════╝╚═╝  ╚═╝     ╚═════╝ ╚═╝     ╚══════╝       │
+│                                                                                 │
+│                          S Y S T E M   I N F O                                 │
+│                                                                                 │
+╰─────────────────────────────────────────────────────────────────────────────────╯
+EOF
+    echo -e "${NC}"
+    
+    # System Information
+    section_header "SYSTEM INFORMATION"
+    display_info "OS" "$(get_os_info)" "$GREEN"
+    display_info "Kernel" "$(get_kernel_info)" "$BLUE"
+    display_info "Uptime" "$(get_uptime)" "$YELLOW"
+    display_info "Load Average" "$(get_load_average)" "$PURPLE"
+    
+    # Hardware Information
+    section_header "HARDWARE INFORMATION"
+    display_info "CPU" "$(get_cpu_info)" "$GREEN"
+    display_info "CPU Usage" "$(get_cpu_usage)%" "$BLUE"
+    display_info "Memory" "$(get_memory_info)" "$YELLOW"
+    display_info "Disk (Root)" "$(get_disk_info)" "$PURPLE"
+    display_info "Temperature" "$(get_temperature)" "$RED"
+    display_info "Battery" "$(get_battery_info)" "$CYAN"
+    
+    # Network Information
+    section_header "NETWORK INFORMATION"
+    display_info "Primary Interface" "$(get_network_info)" "$GREEN"
+    display_info "Listening Ports" "$(get_listening_ports)" "$BLUE"
+    display_info "Active Connections" "$(get_active_connections)" "$YELLOW"
+    
+    # Top Processes
+    section_header "TOP PROCESSES (CPU)"
+    echo -e "${CYAN}$(get_processes)${NC}"
+    
+    # Security Status
+    section_header "SECURITY STATUS"
+    if systemctl is-active --quiet ufw; then
+        display_info "Firewall (UFW)" "Active" "$GREEN"
+    else
+        display_info "Firewall (UFW)" "Inactive" "$RED"
+    fi
+    
+    if systemctl is-active --quiet ssh; then
+        display_info "SSH Service" "Running" "$YELLOW"
+    else
+        display_info "SSH Service" "Stopped" "$GREEN"
+    fi
+    
+    if command -v fail2ban-client &> /dev/null && systemctl is-active --quiet fail2ban; then
+        display_info "Fail2ban" "Active" "$GREEN"
+    else
+        display_info "Fail2ban" "Not Active" "$YELLOW"
+    fi
+    
+    # Footer
+    echo -e "\n${ORANGE}╭─────────────────────────────────────────────────────────────────────────────────╮${NC}"
+    echo -e "${ORANGE}│${NC} Last updated: $(date '+%Y-%m-%d %H:%M:%S')"
+    echo -e "${ORANGE}│${NC} Press any key to exit or Ctrl+C to abort"
+    echo -e "${ORANGE}╰─────────────────────────────────────────────────────────────────────────────────╯${NC}"
+    
+    # Wait for user input
+    read -n 1 -s
+}
+
+# Run main function
+main "$@" 

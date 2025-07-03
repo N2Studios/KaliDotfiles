@@ -1,0 +1,326 @@
+# ╭─────────────────────────────────────────────────────────────────────────────────╮
+# │ ALACRITTY CONFIG - CYBER OPS TERMINAL (TOML FORMAT - 2025)                    │
+# │ Elite terminal setup for cybersecurity development                             │
+# │ Theme: Jet black (#0A0A0A) with electric orange (#FF4F00) accents             │
+# ╰─────────────────────────────────────────────────────────────────────────────────╯
+
+[env]
+TERM = "alacritty"
+COLORTERM = "truecolor"
+
+[shell]
+program = "/bin/zsh"
+args = ["--login"]
+
+[working_directory]
+# Use None for current directory
+# working_directory = "None"
+
+[window]
+dimensions = { columns = 120, lines = 40 }
+position = { x = 100, y = 100 }
+padding = { x = 10, y = 10 }
+dynamic_padding = false
+decorations = "None"
+opacity = 0.85
+blur = true
+startup_mode = "Windowed"
+dynamic_title = true
+title = "Terminal"
+
+[window.class]
+instance = "Alacritty"
+general = "Alacritty"
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[font]
+size = 13.5
+builtin_box_drawing = true
+
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+style = "Regular"
+
+[font.bold]
+family = "JetBrainsMono Nerd Font"
+style = "Bold"
+
+[font.italic]
+family = "JetBrainsMono Nerd Font"
+style = "Italic"
+
+[font.bold_italic]
+family = "JetBrainsMono Nerd Font"
+style = "Bold Italic"
+
+[font.offset]
+x = 0
+y = 1
+
+[font.glyph_offset]
+x = 0
+y = 0
+
+# ╭─────────────────────────────────────────────────────────────────────────────────╮
+# │ CYBER OPS COLOR SCHEME                                                         │
+# ╰─────────────────────────────────────────────────────────────────────────────────╯
+
+[colors.primary]
+background = "#0a0a0a"
+foreground = "#ff4f00"
+dim_foreground = "#cc3f00"
+bright_foreground = "#ff6600"
+
+[colors.cursor]
+text = "#0a0a0a"
+cursor = "#ff4f00"
+
+[colors.vi_mode_cursor]
+text = "#0a0a0a"
+cursor = "#ff4f00"
+
+[colors.selection]
+text = "#0a0a0a"
+background = "#ff4f00"
+
+[colors.search.matches]
+foreground = "#0a0a0a"
+background = "#ff4f00"
+
+[colors.search.focused_match]
+foreground = "#0a0a0a"
+background = "#ff6600"
+
+[colors.footer_bar]
+foreground = "#ffffff"
+background = "#0a0a0a"
+
+[colors.hints.start]
+foreground = "#0a0a0a"
+background = "#ff4f00"
+
+[colors.hints.end]
+foreground = "#0a0a0a"
+background = "#ff6600"
+
+[colors.normal]
+black = "#0a0a0a"
+red = "#ff4f00"
+green = "#00ff88"
+yellow = "#ffd700"
+blue = "#0099ff"
+magenta = "#ff00ff"
+cyan = "#00ffff"
+white = "#ffffff"
+
+[colors.bright]
+black = "#333333"
+red = "#ff6600"
+green = "#33ffaa"
+yellow = "#ffff00"
+blue = "#3399ff"
+magenta = "#ff33ff"
+cyan = "#33ffff"
+white = "#ffffff"
+
+[colors.dim]
+black = "#000000"
+red = "#cc3f00"
+green = "#00cc66"
+yellow = "#ccaa00"
+blue = "#0077cc"
+magenta = "#cc00cc"
+cyan = "#00cccc"
+white = "#cccccc"
+
+[[colors.indexed_colors]]
+index = 16
+color = "#ff4f00"
+
+[[colors.indexed_colors]]
+index = 17
+color = "#ff6b00"
+
+[[colors.indexed_colors]]
+index = 18
+color = "#ff8000"
+
+[[colors.indexed_colors]]
+index = 19
+color = "#ff9500"
+
+[[colors.indexed_colors]]
+index = 20
+color = "#ffaa00"
+
+[[colors.indexed_colors]]
+index = 21
+color = "#ffbf00"
+
+[bell]
+animation = "EaseOutExpo"
+duration = 0
+color = "#ff4f00"
+
+[mouse]
+hide_when_typing = true
+
+[mouse.double_click]
+threshold = 300
+
+[mouse.triple_click]
+threshold = 300
+
+[mouse.url]
+program = "xdg-open"
+args = []
+modifiers = "None"
+
+[selection]
+semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
+save_to_clipboard = true
+
+[cursor]
+thickness = 0.15
+unfocused_hollow = true
+blink_interval = 750
+
+[cursor.style]
+shape = "Beam"
+blinking = "Always"
+
+[cursor.vi_mode_style]
+shape = "Block"
+blinking = "Never"
+
+[general]
+live_config_reload = true
+
+# ╭─────────────────────────────────────────────────────────────────────────────────╮
+# │ KEYBINDINGS - CYBER OPS WORKFLOW                                               │
+# ╰─────────────────────────────────────────────────────────────────────────────────╯
+
+[[keyboard.bindings]]
+key = "Return"
+mods = "Control|Shift"
+action = "SpawnNewInstance"
+
+[[keyboard.bindings]]
+key = "N"
+mods = "Control|Shift"
+action = "SpawnNewInstance"
+
+[[keyboard.bindings]]
+key = "Q"
+mods = "Control|Shift"
+action = "Quit"
+
+[[keyboard.bindings]]
+key = "W"
+mods = "Control|Shift"
+action = "Quit"
+
+[[keyboard.bindings]]
+key = "C"
+mods = "Control|Shift"
+action = "Copy"
+
+[[keyboard.bindings]]
+key = "V"
+mods = "Control|Shift"
+action = "Paste"
+
+[[keyboard.bindings]]
+key = "Plus"
+mods = "Control"
+action = "IncreaseFontSize"
+
+[[keyboard.bindings]]
+key = "Minus"
+mods = "Control"
+action = "DecreaseFontSize"
+
+[[keyboard.bindings]]
+key = "Key0"
+mods = "Control"
+action = "ResetFontSize"
+
+[[keyboard.bindings]]
+key = "PageUp"
+mods = "Shift"
+action = "ScrollPageUp"
+
+[[keyboard.bindings]]
+key = "PageDown"
+mods = "Shift"
+action = "ScrollPageDown"
+
+[[keyboard.bindings]]
+key = "Home"
+mods = "Shift"
+action = "ScrollToTop"
+
+[[keyboard.bindings]]
+key = "End"
+mods = "Shift"
+action = "ScrollToBottom"
+
+[[keyboard.bindings]]
+key = "Space"
+mods = "Control|Shift"
+action = "ToggleViMode"
+
+[[keyboard.bindings]]
+key = "F"
+mods = "Control|Shift"
+action = "SearchForward"
+
+[[keyboard.bindings]]
+key = "B"
+mods = "Control|Shift"
+action = "SearchBackward"
+
+[[keyboard.bindings]]
+key = "L"
+mods = "Control"
+action = "ClearLogNotice"
+
+[[keyboard.bindings]]
+key = "F5"
+mods = "None"
+action = "ReloadConfiguration"
+
+[[keyboard.bindings]]
+key = "Return"
+mods = "Alt"
+action = "ToggleFullscreen"
+
+# ╭─────────────────────────────────────────────────────────────────────────────────╮
+# │ MOUSE BINDINGS                                                                  │
+# ╰─────────────────────────────────────────────────────────────────────────────────╯
+
+[[mouse.bindings]]
+mouse = "Middle"
+action = "PasteSelection"
+
+[[mouse.bindings]]
+mouse = "Right"
+action = "ExpandSelection"
+
+# ╭─────────────────────────────────────────────────────────────────────────────────╮
+# │ DEBUG SETTINGS                                                                  │
+# ╰─────────────────────────────────────────────────────────────────────────────────╯
+
+[debug]
+render_timer = false
+persistent_logging = false
+log_level = "Warn"
+print_events = false
+highlight_damage = false
+
+# ╭─────────────────────────────────────────────────────────────────────────────────╮
+# EOF - Terminal configuration complete (TOML format)
+# ╰─────────────────────────────────────────────────────────────────────────────────╯ 

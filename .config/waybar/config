@@ -1,0 +1,227 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 28,
+    "width": null,
+    "spacing": 4,
+    "margin-top": 6,
+    "margin-bottom": 0,
+    "margin-left": 8,
+    "margin-right": 8,
+    "exclusive": true,
+    "passthrough": false,
+    "gtk-layer-shell": true,
+    "reload_style_on_change": true,
+
+    "modules-left": [
+        "hyprland/workspaces",
+        "hyprland/window"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "cpu",
+        "memory",
+        "temperature",
+        "network",
+        "battery",
+        "pulseaudio",
+        "custom/sierra-ops",
+        "tray"
+    ],
+
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "1": "₁",
+            "2": "₂",
+            "3": "₃",
+            "4": "₄",
+            "5": "₅",
+            "6": "₆",
+            "7": "₇",
+            "8": "₈",
+            "9": "₉",
+            "10": "₁₀",
+            "urgent": "🚨",
+            "active": "●",
+            "default": "○"
+        },
+        "on-click": "activate",
+        "on-scroll-up": "hyprctl dispatch workspace e+1",
+        "on-scroll-down": "hyprctl dispatch workspace e-1",
+        "all-outputs": false,
+        "active-only": false,
+        "persistent_workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": []
+        },
+        "disable-scroll": false,
+        "show-special": false,
+        "sort-by-number": true
+    },
+
+    "hyprland/window": {
+        "format": "{class}",
+        "max-length": 40,
+        "separate-outputs": true,
+        "rewrite": {
+            "Alacritty": "TERMINAL",
+            "firefox": "BROWSER",
+            "code": "CODE_EDITOR",
+            "discord": "COMMS",
+            "steam": "GAMES",
+            "wireshark": "NETWORK_ANALYZER",
+            "burpsuite": "SECURITY_SUITE",
+            "metasploit": "EXPLOIT_FRAMEWORK",
+            "nmap": "NETWORK_SCANNER",
+            "": "DESKTOP"
+        },
+        "tooltip": true,
+        "tooltip-format": "{title}"
+    },
+
+    "clock": {
+        "format": "{:%H:%M}",
+        "format-alt": "{:%Y-%m-%d %H:%M:%S}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "mode": "month",
+            "mode-mon-col": 3,
+            "weeks-pos": "right",
+            "on-scroll": 1,
+            "format": {
+                "months": "<span color='#ff4f00'><b>{}</b></span>",
+                "days": "<span color='#ffffff'><b>{}</b></span>",
+                "weeks": "<span color='#ff6600'><b>W{}</b></span>",
+                "weekdays": "<span color='#ffaa00'><b>{}</b></span>",
+                "today": "<span color='#ff4f00'><b><u>{}</u></b></span>"
+            }
+        },
+        "actions": {
+            "on-click-right": "mode",
+            "on-click-forward": "tz_up",
+            "on-click-backward": "tz_down",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        },
+        "interval": 1,
+        "timezone": "America/New_York"
+    },
+
+    "cpu": {
+        "format": " {usage}%",
+        "format-alt": " {avg_frequency}GHz",
+        "tooltip-format": "CPU Usage: {usage}%\nAvg Frequency: {avg_frequency}GHz\nLoad: {load}",
+        "interval": 2,
+        "max-length": 10,
+        "on-click": "alacritty -e htop",
+        "on-click-right": "alacritty -e btop"
+    },
+
+    "memory": {
+        "format": " {percentage}%",
+        "format-alt": " {used}GB",
+        "tooltip-format": "Memory Usage: {percentage}%\nUsed: {used}GB / {total}GB\nAvailable: {avail}GB\nSwap: {swapUsed}GB / {swapTotal}GB",
+        "interval": 2,
+        "max-length": 10,
+        "on-click": "alacritty -e htop",
+        "on-click-right": "alacritty -e free -h"
+    },
+
+    "temperature": {
+        "thermal-zone": 0,
+        "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        "format": "{temperatureC}°C",
+        "format-critical": " {temperatureC}°C",
+        "tooltip-format": "Temperature: {temperatureC}°C\nCritical: {temperatureC} >= 80°C",
+        "interval": 3,
+        "on-click": "alacritty -e sensors"
+    },
+
+    "network": {
+        "interface": "wlan0",
+        "format": "{ifname}",
+        "format-wifi": " {signalStrength}%",
+        "format-ethernet": " {ipaddr}",
+        "format-linked": " {ifname}",
+        "format-disconnected": " Disconnected",
+        "format-alt": " {bandwidthDownBits}  {bandwidthUpBits}",
+        "tooltip-format": "Network: {ifname}\nIP: {ipaddr}\nGateway: {gwaddr}\nSignal: {signalStrength}%\nFrequency: {frequency}MHz\nESSID: {essid}",
+        "tooltip-format-wifi": "WiFi: {essid}\nIP: {ipaddr}\nSignal: {signalStrength}%\nFrequency: {frequency}MHz\nDown: {bandwidthDownBits}\nUp: {bandwidthUpBits}",
+        "tooltip-format-ethernet": "Ethernet: {ifname}\nIP: {ipaddr}\nGateway: {gwaddr}\nDown: {bandwidthDownBits}\nUp: {bandwidthUpBits}",
+        "tooltip-format-disconnected": "Network Disconnected",
+        "interval": 2,
+        "max-length": 30,
+        "on-click": "alacritty -e nmtui",
+        "on-click-right": "alacritty -e iwctl"
+    },
+
+    "battery": {
+        "bat": "BAT0",
+        "adapter": "ADP1",
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{icon} {time}",
+        "format-full": " {capacity}%",
+        "format-icons": ["", "", "", "", ""],
+        "tooltip-format": "Battery: {capacity}%\nTime: {time}\nPower: {power}W\nCycles: {cycles}",
+        "interval": 10,
+        "max-length": 15,
+        "on-click": "alacritty -e acpi -b",
+        "on-click-right": "alacritty -e upower -i /org/freedesktop/UPower/devices/battery_BAT0"
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": " {volume}%",
+        "format-source": " {volume}%",
+        "format-source-muted": " {volume}%",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "tooltip-format": "Audio: {volume}%\nDevice: {desc}\nPort: {port}",
+        "scroll-step": 5,
+        "max-length": 15,
+        "on-click": "pavucontrol",
+        "on-click-right": "alacritty -e alsamixer",
+        "on-click-middle": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+    },
+
+    "custom/sierra-ops": {
+        "format": " SIERRA",
+        "tooltip-format": "Sierra Operations Console\nStatus: Active\nUptime: System Ready\nSecurity: Operational",
+        "interval": 30,
+        "return-type": "json",
+        "exec": "echo '{\"text\":\"SIERRA\",\"tooltip\":\"Sierra Operations Console\\nStatus: Active\\nUptime: $(uptime -p)\\nSecurity: Operational\",\"class\":\"sierra-active\"}'",
+        "on-click": "alacritty -e htop",
+        "on-click-right": "alacritty -e journalctl -f",
+        "on-click-middle": "hyprctl dispatch togglespecialworkspace sierra",
+        "max-length": 20,
+        "signal": 8
+    },
+
+    "tray": {
+        "icon-size": 16,
+        "spacing": 8,
+        "tooltip": true,
+        "reverse-direction": false,
+        "show-passive-items": true
+    }
+} 
