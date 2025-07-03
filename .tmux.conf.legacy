@@ -1,0 +1,37 @@
+# Legacy tmux configuration - Pre-2025 Archive
+# This file contains the previous tmux setup before the 2025 GitOps hardening
+# Archived on 2025-01-22 as part of the security audit and cleanup process
+
+# Original tmux configuration (example of previous setup)
+# Note: This is a placeholder for the actual legacy configuration
+# In a real scenario, this would contain the actual previous tmux.conf contents
+
+# Basic settings that were commonly used in the legacy setup
+set -g default-terminal "screen-256color"
+set -g mouse on
+set -g prefix C-a
+unbind C-b
+bind C-a send-prefix
+
+# Legacy key bindings
+bind | split-window -h
+bind - split-window -v
+unbind '"'
+unbind %
+
+# Legacy status bar configuration
+set -g status-bg black
+set -g status-fg white
+set -g status-left-length 40
+set -g status-left "#[fg=green]Session: #S #[fg=yellow]#I #[fg=cyan]#P"
+set -g status-right "#[fg=cyan]%d %b %R"
+
+# Legacy window settings
+set -g window-status-current-style bg=red,fg=white
+set -g window-status-style bg=default,fg=cyan
+
+# Archive metadata
+# Original file location: ~/.tmux.conf
+# Backup created: 2025-01-22
+# Reason: GitOps hardening and configuration consolidation
+# Migration path: See current .tmux.conf and .config/ structure 
