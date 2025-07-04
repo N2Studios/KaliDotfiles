@@ -30,9 +30,10 @@ readonly LOG_FILE="/tmp/hyprland-install.log"
 
 # Package arrays for organized installation (optimized)
 readonly CORE_PACKAGES=(
-    hyprland waybar alacritty rofi sxhkd tmux neovim git zsh curl unzip wget
-    grim slurp wl-clipboard xdg-desktop-portal-hyprland
+    waybar alacritty rofi sxhkd tmux neovim git zsh curl unzip wget
+    grim slurp wl-clipboard
 )
+# Note: hyprland and xdg-desktop-portal-hyprland removed - handled separately for Kali compatibility
 
 readonly DEV_PACKAGES=(
     build-essential gcc g++ make cmake python3-pip nodejs npm
@@ -40,14 +41,16 @@ readonly DEV_PACKAGES=(
 )
 
 readonly AUDIO_UX_PACKAGES=(
-    pamixer brightnessctl mako swww playerctl
+    pamixer brightnessctl playerctl
     pulseaudio pavucontrol
 )
+# Note: mako and swww removed - handled separately for Kali compatibility
 
 readonly OPTIONAL_PACKAGES=(
-    lazygit thunar network-manager-gnome btop neofetch
+    lazygit thunar network-manager-gnome btop
     firefox-esr obs-studio
 )
+# Note: neofetch removed - handled separately for Kali compatibility (replaced with fastfetch)
 # Removed: flameshot (replaced by grim+slurp), code-oss (use official VSCode if needed)
 
 readonly RUST_PACKAGES=(
@@ -198,6 +201,195 @@ install_nerd_fonts() {
     fc-cache -fv
     
     print_success "JetBrainsMono Nerd Font installed successfully"
+}
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# 🐉 KALI LINUX SPECIFIC INSTALLATIONS
+# ═══════════════════════════════════════════════════════════════════════════════
+
+install_kali_specific_packages() {
+    print_step "Installing Kali-specific packages that require special handling..."
+    
+    # Install build dependencies needed for compiling from source
+    print_step "Installing build dependencies..."
+    sudo apt install -y build-essential cmake meson ninja-build pkg-config \
+        libwayland-dev libxkbcommon-dev libegl1-mesa-dev libgles2-mesa-dev \
+        libdrm-dev libxcb-util-dev libpixman-1-dev libcairo2-dev \
+        libpango1.0-dev libgdk-pixbuf2.0-dev libxcb-ewmh-dev \
+        libxcb-icccm4-dev libxcb-res0-dev libxcb-present-dev \
+        libxcb-composite0-dev libxcb-render-util0-dev libxcb-xfixes0-dev \
+        libxcb-damage0-dev libxcb-randr0-dev libxcb-xinput-dev \
+        libxcb-xtest0-dev libxcb-screensaver0-dev libxcb-shape0-dev \
+        libxcb-xinerama0-dev libxcb-shm0-dev libxcb-sync-dev \
+        libxcb-dri3-dev libxcb-cursor-dev libxcb-util-wm-dev \
+        libxcb-xkb-dev libxkbcommon-x11-dev libxcb-res0-dev \
+        libxcb-ewmh-dev libxcb-icccm4-dev libxcb-keysyms1-dev \
+        libxcb-util0-dev libxcb-image0-dev libxcb-render0-dev \
+        libxcb-shape0-dev libxcb-xfixes0-dev libxcb-randr0-dev \
+        libxcb-damage0-dev libxcb-composite0-dev libxcb-xtest0-dev \
+        libxcb-screensaver0-dev libxcb-present-dev libxcb-sync-dev \
+        libxcb-dri3-dev libxcb-cursor-dev libxcb-util-wm-dev \
+        libxcb-xkb-dev libxkbcommon-x11-dev wayland-protocols \
+        libpipewire-0.3-dev libspa-0.2-dev libsystemd-dev \
+        libjpeg-dev libpng-dev libavutil-dev libavcodec-dev \
+        libavformat-dev libmagic-dev libzip-dev libtomlplusplus-dev \
+        libjson-c-dev libdbus-1-dev libglib2.0-dev libgtk-3-dev \
+        libnotify-dev libssl-dev libcurl4-openssl-dev git-lfs \
+        scdoc hyprlang-dev || {
+        print_warning "Some build dependencies might not be available - continuing anyway"
+    }
+    
+    # Install Hyprland from source - Fixed for Kali Linux compatibility
+    if ! command -v Hyprland &> /dev/null; then
+        print_step "Installing Hyprland from source (not available in Kali repos)..."
+        cd /tmp
+        
+        # Clone Hyprland repository
+        if [[ ! -d "Hyprland" ]]; then
+            git clone --recursive https://github.com/hyprwm/Hyprland.git
+        fi
+        
+        cd Hyprland
+        
+        # Build and install Hyprland
+        if make all && sudo make install; then
+            print_success "Hyprland installed successfully from source"
+        else
+            print_error "Failed to install Hyprland from source"
+            print_warning "Attempting alternative installation via snap..."
+            if sudo snap install hyprland --classic; then
+                print_success "Hyprland installed via snap as fallback"
+            else
+                print_error "Failed to install Hyprland via snap. Manual installation may be required."
+            fi
+        fi
+        
+        cd "$SCRIPT_DIR"
+    else
+        print_warning "Hyprland is already installed"
+    fi
+    
+    # Install xdg-desktop-portal-hyprland from source - Fixed for Kali Linux compatibility  
+    if ! command -v xdg-desktop-portal-hyprland &> /dev/null; then
+        print_step "Installing xdg-desktop-portal-hyprland from source (not available in Kali repos)..."
+        cd /tmp
+        
+        # Clone xdg-desktop-portal-hyprland repository
+        if [[ ! -d "xdg-desktop-portal-hyprland" ]]; then
+            git clone --recursive https://github.com/hyprwm/xdg-desktop-portal-hyprland.git
+        fi
+        
+        cd xdg-desktop-portal-hyprland
+        
+        # Build and install xdg-desktop-portal-hyprland
+        if meson setup build && ninja -C build && sudo ninja -C build install; then
+            print_success "xdg-desktop-portal-hyprland installed successfully from source"
+        else
+            print_error "Failed to install xdg-desktop-portal-hyprland from source"
+            print_warning "This may cause issues with screen sharing and file dialogs in Hyprland"
+        fi
+        
+        cd "$SCRIPT_DIR"
+    else
+        print_warning "xdg-desktop-portal-hyprland is already installed"
+    fi
+    
+    # Install mako (notification daemon) from source - Fixed for Kali Linux compatibility
+    if ! command -v mako &> /dev/null; then
+        print_step "Installing mako from source (not available in Kali repos)..."
+        cd /tmp
+        
+        # Clone mako repository
+        if [[ ! -d "mako" ]]; then
+            git clone https://github.com/emersion/mako.git
+        fi
+        
+        cd mako
+        
+        # Build and install mako
+        if meson setup build && ninja -C build && sudo ninja -C build install; then
+            print_success "mako installed successfully from source"
+        else
+            print_error "Failed to install mako from source"
+            print_warning "Attempting to install dunst as alternative notification daemon..."
+            if sudo apt install -y dunst; then
+                print_success "dunst installed as alternative to mako"
+            else
+                print_error "Failed to install notification daemon"
+            fi
+        fi
+        
+        cd "$SCRIPT_DIR"
+    else
+        print_warning "mako is already installed"
+    fi
+    
+    # Install swww (wallpaper manager) via cargo - Fixed for Kali Linux compatibility
+    if ! command -v swww &> /dev/null; then
+        print_step "Installing swww via cargo (not available in Kali repos)..."
+        
+        # Ensure Rust is installed first
+        if ! command -v cargo &> /dev/null; then
+            print_step "Installing Rust for swww compilation..."
+            curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+            source "$HOME/.cargo/env"
+        fi
+        
+        # Install swww via cargo
+        if cargo install swww; then
+            print_success "swww installed successfully via cargo"
+        else
+            print_error "Failed to install swww via cargo"
+            print_warning "Attempting to install feh as alternative wallpaper manager..."
+            if sudo apt install -y feh; then
+                print_success "feh installed as alternative to swww"
+            else
+                print_error "Failed to install wallpaper manager"
+            fi
+        fi
+    else
+        print_warning "swww is already installed"
+    fi
+    
+    # Install fastfetch as neofetch replacement - Fixed for Kali Linux compatibility
+    if ! command -v fastfetch &> /dev/null && ! command -v neofetch &> /dev/null; then
+        print_step "Installing fastfetch as neofetch replacement (neofetch deprecated)..."
+        
+        # Try to install from official repos first
+        if sudo apt install -y fastfetch; then
+            print_success "fastfetch installed from official repos"
+        else
+            print_warning "fastfetch not in repos, installing from GitHub releases..."
+            
+            # Get latest release URL
+            local latest_url="https://api.github.com/repos/fastfetch-cli/fastfetch/releases/latest"
+            local download_url=$(curl -s "$latest_url" | grep -o '"browser_download_url": *"[^"]*linux-amd64.deb"' | grep -o 'https://[^"]*')
+            
+            if [[ -n "$download_url" ]]; then
+                cd /tmp
+                wget -O fastfetch.deb "$download_url"
+                if sudo dpkg -i fastfetch.deb; then
+                    print_success "fastfetch installed from GitHub releases"
+                else
+                    print_error "Failed to install fastfetch from GitHub releases"
+                    print_warning "Attempting to install neofetch as fallback..."
+                    if sudo apt install -y neofetch; then
+                        print_success "neofetch installed as fallback"
+                    else
+                        print_error "Failed to install system info tool"
+                    fi
+                fi
+                rm -f fastfetch.deb
+                cd "$SCRIPT_DIR"
+            else
+                print_error "Could not find fastfetch download URL"
+            fi
+        fi
+    else
+        print_warning "System info tool (fastfetch or neofetch) is already installed"
+    fi
+    
+    print_success "Kali-specific package installation completed"
 }
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -433,6 +625,9 @@ main() {
     install_package_array CORE_PACKAGES "core system"
     install_package_array DEV_PACKAGES "development"
     install_package_array AUDIO_UX_PACKAGES "audio/UX"
+    
+    # Install Kali-specific packages that aren't available in standard repos
+    install_kali_specific_packages
     
     # Optional packages
     if ask_confirmation "Install optional packages (lazygit, btop, neofetch, etc.)?"; then
